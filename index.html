@@ -4,19 +4,48 @@
     <meta charset="UTF-8">
     <title>Dok0xv's TEST PAGE</title>
     <style>
+        /* 全局样式设置，使页面在手机上能合理显示，去除默认边距等 */
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; 
+            font-family: Arial, sans-serif; /* 设置一个较为通用的字体 */
         }
 
         h1, p {
-            text-align: center; 
+            text-align: center; /* 标题和段落居中显示 */
         }
 
         img {
-            max-width: 100%; 
-            height: auto; 
+            max-width: 100%; /* 图片宽度自适应屏幕，最大不超过自身原始宽度 */
+            height: auto; /* 高度根据宽度等比例缩放 */
+        }
+
+        /* 爱心样式 */
+       .heart {
+            position: absolute;
+            top: -20px;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            transform: rotate(45deg);
+            animation: fall 5s linear infinite;
+        }
+
+        /* 动画关键帧，定义爱心飘落的过程 */
+        @keyframes fall {
+            0% {
+                top: -20px;
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -26,5 +55,22 @@
     <p>我很抱歉
     Sorry about that!</p>
     <img src="https://cdn.glitch.global/b99977e0-ba9f-4ad1-bf49-0e0549ded5d6/cat.jpg?v=1657088754180" />
+
+    <!-- 使用JavaScript动态创建爱心元素 -->
+    <script>
+        // 获取页面的body元素
+        const body = document.body;
+
+        // 循环创建多个爱心元素
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            body.appendChild(heart);
+
+            // 随机设置爱心的初始位置（水平方向）
+            const x = Math.random() * window.innerWidth;
+            heart.style.left = `${x}px`;
+        }
+    </script>
 </body>
 </html>
