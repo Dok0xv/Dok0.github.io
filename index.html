@@ -11,7 +11,7 @@
             font-family: Arial, sans-serif; /* 设置一个较为通用的字体 */
         }
 
-        h1, p {
+        h1, p, h2 {
             text-align: center; /* 标题和段落居中显示 */
         }
 
@@ -29,6 +29,32 @@
             background-color: pink;
             transform: rotate(45deg);
             animation: fall 5s linear infinite;
+            /* 使用border-radius绘制更精细的爱心形状基础部分 */
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* 使用伪元素绘制爱心的下半部分 */
+       .heart:before,
+       .heart:after {
+            content: "";
+            position: absolute;
+            background-color: pink;
+        }
+
+       .heart:before {
+            width: 20px;
+            height: 20px;
+            left: -10px;
+            top: 0px;
+            border-radius: 20px 0 0 20px;
+        }
+
+       .heart:after {
+            width: 20px;
+            height: 20px;
+            left: 0px;
+            top: 10px;
+            border-radius: 0 20px 20px 0;
         }
 
         /* 动画关键帧，定义爱心飘落的过程 */
@@ -61,7 +87,7 @@
         // 获取页面的body元素
         const body = document.body;
 
-        // 循环创建多个爱心元素
+        // 循环创建多个爱心元素，这里数量设为20，可按需调整
         for (let i = 0; i < 20; i++) {
             const heart = document.createElement('div');
             heart.classList.add('heart');
